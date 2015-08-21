@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.journaldev.hibernate.model.Address" table="Address">
+		<id name="id" type="int">
+			<column name="ADD_ID" />
+			<generator class="increment" />
+		</id>
+		<property name="street" type="java.lang.String">
+			<column name="ADD_STREET" />
+		</property>
+		<property name="city" type="java.lang.String">
+			<column name="ADD_CITY" />
+		</property>
+		<property name="country" type="java.lang.String">
+			<column name="ADD_COUNTRY" />
+		</property>
+
+	</class>
+</hibernate-mapping>
