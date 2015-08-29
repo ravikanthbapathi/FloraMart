@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:soap="http://cxf.apache.org/bindings/soap" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd  http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+
+	<jaxws:server id="shopingMartService"
+		serviceClass="com.floramart.sample.ws.ShopingMartService" address="/shopingMartService">
+		<jaxws:serviceBean>
+			<bean class="com.floramart.sample.ws.ShopingMartServiceImpl">
+				<property name="productService" ref="productService" />
+			</bean>
+		</jaxws:serviceBean>
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+				<constructor-arg>
+					<map>
+						<entry key="action" value="UsernameToken" />
+						<entry key="passwordType" value="PasswordText" />
+						<entry key="passwordCallbackRef" value-ref="myPasswordCallback" />
+					</map>
+				</constructor-arg>
+			</bean>
+		</jaxws:inInterceptors>
+	</jaxws:server>
+
+	<bean id="myPasswordCallback" class="com.floramart.sample.controller.UTPasswordCallback" />
+</beans>

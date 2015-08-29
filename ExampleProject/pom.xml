@@ -1,10 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.journaldev.hibernate</groupId>
-	<artifactId>HibernateExample</artifactId>
+	<groupId>com.floramart.sample</groupId>
+	<artifactId>ExampleProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>HibernateExample</name>
 	<packaging>war</packaging>
 
 	<build>
@@ -28,7 +27,7 @@
 		</plugins>
 		<finalName>${project.artifactId}</finalName>
 	</build>
-	
+
 	<properties>
 		<!-- Generic properties -->
 		<java.version>1.8</java.version>
@@ -47,7 +46,6 @@
 		<!-- Logging -->
 		<logback.version>1.0.13</logback.version>
 		<slf4j.version>1.7.5</slf4j.version>
-
 	</properties>
 
 	<dependencies>
@@ -66,6 +64,7 @@
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-transports-http</artifactId>
 			<version>${cxf.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
@@ -190,7 +189,6 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 
 </project>

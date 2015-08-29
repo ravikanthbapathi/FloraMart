@@ -1,5 +1,7 @@
 package com.journaldev.hibernate.main;
 
+import java.util.List;
+
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.journaldev.hibernate.dao.EmployeeDAO;
@@ -17,8 +19,8 @@ public class SpringHibernateMain {
 		Employee employee = employeeDAO.getEmployee(4);
 		System.out.println(employee);
 
-		// List<Employee> employees = employeeDAO.listEmployees();
-		// System.out.println(employees);
+		List<Employee> employees = employeeDAO.listEmployees();
+		System.out.println(employees);
 
 		context.close();
 
