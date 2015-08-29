@@ -14,8 +14,17 @@ public class ProductCategoryDAOImpl implements ProductDAO, CategoryDAO {
 	private SessionFactory sessionFactory;
 
 	public void addCategory(Category category) {
-		// TODO Auto-generated method stub
+		Session session = getSessionFactory().getCurrentSession();
+		// start transaction
+		session.beginTransaction();
 
+		// Save the Model object
+		session.persist(category);
+
+		// Commit transaction
+		session.getTransaction().commit();
+
+		System.out.println("category ID=" + category.getCategoryId() + "\t, Name=" + category.getCategoryDescription());
 	}
 
 	public List<Category> listCategories() {
@@ -28,9 +37,21 @@ public class ProductCategoryDAOImpl implements ProductDAO, CategoryDAO {
 		return null;
 	}
 
-	public Category searchCategory(String prodName) {
-		// TODO Auto-generated method stub
-		return null;
+	public Category searchCategory(String categoryName) {
+		Session session = sessionFactory.getCurrentSession();
+		session.getTransaction().begin();
+
+		Query query = session.getNamedQuery("findByCategoryName");
+		query.setParameter("categoryName", categoryName);
+		List<Category> categoryList = query.list();
+
+		Category searchedCategory = null;
+		if (categoryList != null && !categoryList.isEmpty()) {
+			searchedCategory = categoryList.get(0);
+		}
+
+		session.getTransaction().commit();
+		return searchedCategory;
 	}
 
 	public void removeCategory(Category category) {

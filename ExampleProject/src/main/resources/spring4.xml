@@ -25,7 +25,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.floramart.sample.model.Product</value>
-				<!-- <value>com.floramart.sample.model.Category</value> -->
+				<value>com.floramart.sample.model.Category</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -42,6 +42,7 @@
 
 	<bean id="productService" class="com.floramart.sample.controller.ProductServiceImpl">
 		<property name="productDAO" ref="productDAO" />
+		<property name="categoryDAO" ref="productDAO" />
 	</bean>
 
 	<bean id="productDAO" class="com.floramart.sample.dao.ProductCategoryDAOImpl">

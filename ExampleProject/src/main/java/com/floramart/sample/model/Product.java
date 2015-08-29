@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -33,7 +35,9 @@ public class Product {
 	@Column(name = "PROD_PRICE")
 	private Double price;
 
-	// private Category category;
+	@ManyToOne
+	@JoinColumn(name = "PCAT_PKREF", nullable = false)
+	private Category category;
 
 	public Product() {
 		// TODO Auto-generated constructor stub
@@ -79,12 +83,12 @@ public class Product {
 		this.price = price;
 	}
 
-	// public Category getCategory() {
-	// return category;
-	// }
-	//
-	// public void setCategory(Category category) {
-	// this.category = category;
-	// }
-	//
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 }

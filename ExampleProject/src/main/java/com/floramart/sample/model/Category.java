@@ -1,14 +1,19 @@
 package com.floramart.sample.model;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+@NamedQueries({ @NamedQuery(name = "findByCategoryName", query = "from Category where categoryName = :categoryName") })
 
 @Entity
 @Table(name = "PRODUCT_CATEGORY", uniqueConstraints = { @UniqueConstraint(columnNames = { "PCAT_ID" }) })
@@ -25,7 +30,8 @@ public class Category {
 	@Column(name = "PCAT_DESC", length = 20, nullable = true)
 	private String categoryDescription;
 
-	private List<Product> products;
+	@OneToMany(mappedBy = "category")
+	private Set<Product> products;
 
 	public Category() {
 		// TODO Auto-generated constructor stub
@@ -55,11 +61,11 @@ public class Category {
 		this.categoryDescription = categoryDescription;
 	}
 
-	public List<Product> getProducts() {
+	public Set<Product> getProducts() {
 		return products;
 	}
 
-	public void setProducts(List<Product> products) {
+	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
 
